@@ -1,0 +1,43 @@
+# 依赖目录
+node_modules/
+**/node_modules/
+
+# 构建输出目录（NestJS 编译后的代码）
+dist/
+**/dist/
+
+# pnpm 锁文件（可选，如果你不想提交它）
+# pnpm-lock.yaml
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 环境变量文件（避免提交敏感信息）
+
+
+# Docker 相关
+docker-compose.override.yml
+.dockerignore
+Dockerfile*
+**/Dockerfile*
+**/.dockerignore
+
+# IDE 和编辑器文件
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 测试和覆盖率
+coverage/
+.nyc_output/
+
+# 系统文件
+.DS_Store
+Thumbs.db

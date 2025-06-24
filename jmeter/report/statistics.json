@@ -1,0 +1,34 @@
+{
+  "创建订单请求" : {
+    "transaction" : "创建订单请求",
+    "sampleCount" : 10000,
+    "errorCount" : 1940,
+    "errorPct" : 19.4,
+    "meanResTime" : 2.933699999999999,
+    "medianResTime" : 1.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 3947.0,
+    "pct1ResTime" : 3.0,
+    "pct2ResTime" : 4.0,
+    "pct3ResTime" : 10.989999999999782,
+    "throughput" : 322.35187931145634,
+    "receivedKBytesPerSec" : 210.99290422925668,
+    "sentKBytesPerSec" : 112.61438454967443
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 10000,
+    "errorCount" : 1940,
+    "errorPct" : 19.4,
+    "meanResTime" : 2.933699999999999,
+    "medianResTime" : 1.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 3947.0,
+    "pct1ResTime" : 3.0,
+    "pct2ResTime" : 4.0,
+    "pct3ResTime" : 10.989999999999782,
+    "throughput" : 322.35187931145634,
+    "receivedKBytesPerSec" : 210.99290422925668,
+    "sentKBytesPerSec" : 112.61438454967443
+  }
+}

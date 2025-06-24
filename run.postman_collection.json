@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "abad2b4d-a29e-4159-b655-61575c605894",
+		"name": "run",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40578034"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"shoe_1\",\n    \"name\": \"Running Shoes\",\n    \"stock\": 100\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/inventory/init",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"inventory",
+						"init"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:3001/inventory/init \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"productId\": \"shoe_1\",\n    \"name\": \"Running Shoes\",\n    \"stock\": 10\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"shoe_1\",\n    \"quantity\": 1,\n    \"userId\": \"user_123\",\n    \"productName\": \"xiezi \"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"order"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:3000/order \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"productId\": \"shoe_1\",\n    \"quantity\": 1,\n    \"userId\": \"user_123\"\n  }'"
+			},
+			"response": []
+		}
+	]
+}

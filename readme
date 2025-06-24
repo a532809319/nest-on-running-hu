@@ -1,0 +1,55 @@
+
+要求   mac  本地node 版本 v23.5.0
+sh-3.2# npm show @nestjs/core version
+11.1.3
+当前项目搭建基于
+
+本例子利用docker 部署 数据库 mq 
+1 请到各个子目录 运行 pnpm i (请注意本项目必这样，基于pnpm部署)
+2 sudo docker-compose up -d  # -d 表示后台运行 mac开启sudo
+ 端口情况
+============================
+docker 情况
+    order-service:
+      - "3007:3007"
+    auth-service:
+      - "3008:3008"
+  inventory-service:
+      - "3009:3009"
+      本地情况
+ order-service:
+      - "3007:3007"
+    auth-service:
+      - "3008:3008"
+  inventory-service:
+      - "3009:3009"
+
+=======================
+
+
+1  run-auth-app 
+    这是回答第二个问题用nest.js 写一个注册&登录接口(希望能够用mysql做数据库,redis做缓存)
+
+注意 1 2 项目毫无关系 
+
+2
+充分利用你对微服务，队列，缓存等知识点，设计一个支持高并发的nestjs订单后端demo（一个订单服务，一个库存服务）。在高并发的情况下，避免下单超库存售卖。
+使用jmeter验证。
+chmod +x runjm.sh
+run-inventory-app 库存系统
+端口为3001 同时间也是消费者 后面可以拆分多个微服务
+
+
+run-order-app 库存系统 端口为3002
+
+
+3 jmeter 使用jmeter验证。
+cd testJemReport 
+安装jemer 或者可以yong dokck
+jmeter -n -t ./test1.jmx -l ./test_results.jtl -e -o ./report
+file:///Users/hukai/Desktop/demo-hu/jmeter/report/index.html
+本机电脑测试 哪怕是直接return 也是百分之八十的结果。 所以本机测试可能数据不准
+
+
+
+
