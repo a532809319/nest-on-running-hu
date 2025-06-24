@@ -1,0 +1,36 @@
+# 阶段 1: 构建阶段（安装所有依赖并编译）
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY package.json ./
+RUN pnpm install
+
+# 复制 .env.development（构建阶段可能需要，但生产环境不会用它）
+# 如果构建阶段需要 .env.development，可以取消下一行的注释
+# COPY .env.development ./
+COPY . .
+RUN pnpm run build
+# 阶段 2: 生产阶段（仅复制必要的文件）
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare pnpm@latest --activate
+# 关键改进：显式复制 .env.production 到镜像
+# 关键：在这里设置 NODE_ENV
+ENV NODE_ENV=production
+COPY .env ./
+COPY .env.development ./
+COPY .env.production ./
+COPY package.json ./
+RUN pnpm install --prod
+
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 3009
+CMD ["pnpm", "run", "start:prod"]

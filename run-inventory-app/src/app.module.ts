@@ -10,13 +10,23 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+           isGlobal: true,
+       cache: false,
+       envFilePath: process.env.NODE_ENV=='production'?'.env.production':'.env',
+   
     }),
       TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
         useFactory: (configService: ConfigService) => {
-          console.log( "configService",configService.get<string>('DB_SYNCHRONIZE'))
-
+         
+       
+        console.log("('DB_HOST-xxx-->>>')",configService.get<string>('DB_HOST'))
+          console.log('NODE_ENV:', process.env.NODE_ENV); // 或通过 ConfigService 获取
+     console.log('ConfigService NODE_ENV:', configService.get('NODE_ENV')); // 可能返回 undefined
+        console.log("('REDIS_HOST---')",configService.get<string>('REDIS_HOST'))
+        console.log("('DB_USERNAME---')",configService.get<string>('DB_USERNAME'))
+        console.log("('DB_PASSWORD---')",configService.get<string>('DB_PASSWORD'))
+       
           return {
               type: 'mysql',
               host: configService.get<string>('DB_HOST'),

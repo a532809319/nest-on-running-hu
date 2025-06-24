@@ -20,12 +20,13 @@ async function bootstrap() {
 // app.start
    // 1. 创建 HTTP 服务
   const app = await NestFactory.create(AppModule);
+      
 
   // 2. 连接 RabbitMQ 微服务
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://localhost:5672'],
+      urls: [process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672'],
       queue: 'stock_deduction',
       queueOptions: { durable: true },
     },
@@ -36,9 +37,9 @@ async function bootstrap() {
 
   // // 4. 启动 HTTP 服务
 const port=3002
-  await app.listen(port);
-  console.log("Auth-inventory running on port ",port)
-  console.log("Auth-inventory running on port ",port)
+  await app.listen(port,"0.0.0.0");
+  console.log("Auth-inventory 0.0.0.0running on port ",port)
+  console.log("Auth-inventory 0.0.0.0running on port ",port)
   console.log('HTTP 服务已启``端口 ；RabbitMQ 微服务已连接。');
 }
 bootstrap();

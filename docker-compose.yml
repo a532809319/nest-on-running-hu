@@ -44,17 +44,18 @@ services:
       JWT_EXPIRES_IN: 60d
 
 
-  # order-service:
-  #   build: ./run-order-app
-  #   ports:
-  #     - "3007:3007"
-  #   depends_on:
-  #     - mysql
-  #     - redis
-  #     - rabbitmq
-  #   environment:
-  #     NODE_ENV: production
-
+  order-service:
+    build: ./run-order-app
+    ports:
+      - "3003:3010"
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      REDIS_HOST: redis
   auth-service:
     build: ./run-auth-app
     ports:
@@ -66,16 +67,22 @@ services:
     environment:
       NODE_ENV: production
       DB_HOST: mysql
-  # inventory-service:
-  #   build: ./run-inventory-app
-  #   ports:
-  #     - "3009:3009"
-  #   depends_on:
-  #     - mysql
-  #     - redis
-  #     - rabbitmq
-  #   environment:
-  #     NODE_ENV: production  
+      REDIS_HOST: redis
+
+  inventory-service:
+    build: ./run-inventory-app
+    ports:
+      - "3002:3009"
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+    environment:
+      NODE_ENV: production  
+      REDIS_HOST: redis
+      DB_HOST: mysql
+
+
 
 volumes:
   mysql-data:

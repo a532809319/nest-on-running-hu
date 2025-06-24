@@ -19,11 +19,11 @@ pnpm-debug.log*
 
 
 # Docker 相关
-docker-compose.override.yml
-.dockerignore
-Dockerfile*
-**/Dockerfile*
-**/.dockerignore
+# docker-compose.override.yml
+# .dockerignore
+# Dockerfile*
+# **/Dockerfile*
+# **/.dockerignore
 
 # IDE 和编辑器文件
 .idea/

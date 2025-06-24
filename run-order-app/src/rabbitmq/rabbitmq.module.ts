@@ -9,7 +9,8 @@ import { RabbitMQService } from './rabbitmq.service';
         name: 'RABBITMQ_CLIENT',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'],
+          urls: [ process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672',
+],
           queue: 'stock_deduction',
           queueOptions: {
             durable: true
