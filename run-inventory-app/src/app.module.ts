@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
         useFactory: (configService: ConfigService) => {
-          console.log( configService.get<string>('DB_SYNCHRONIZE'))
+          console.log( "configService",configService.get<string>('DB_SYNCHRONIZE'))
 
           return {
               type: 'mysql',

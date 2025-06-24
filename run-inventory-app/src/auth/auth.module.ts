@@ -22,8 +22,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>{ 
           const secret = configService.get<string>('JWT_SECRET')
-        console.log(111,configService.get<string>('JWT_SECRET'),"configService.get<string>('JWT_SECRET')11111");
-        console.log(2222,configService.get<string>('JWT_EXPIRES_IN'),"configService.get<string>('JWT_SECRET')");
         if (!secret) {
           throw new Error('JWT secret is not configured');
         }

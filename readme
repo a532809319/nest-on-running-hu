@@ -13,7 +13,8 @@ sudo su
  ./install_deps.sh
  (请注意本项目必这样，基于pnpm部署)
 安装完成 分别到各个目录npm run start
-
+docker-compose down -v  # 清理旧容器和卷
+docker-compose up --build  # 重新构建镜像
 2 sudo docker-compose up -d  # -d 表示后台运行 mac开启sudo
  端口情况
 ============================

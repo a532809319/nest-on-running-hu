@@ -30,16 +30,30 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+      NODE_ENV: production
+      DB_HOST: localhost
+      DB_PORT: 3306
+      DB_USERNAME: user
+      DB_PASSWORD: pass
+      DB_DATABASE: inventory_db
+      DB_SYNCHRONIZE: true
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_TTL: 3600
+      JWT_SECRET: a-string-secret-at-least-bits-long
+      JWT_EXPIRES_IN: 60d
 
-  order-service:
-    build: ./run-order-app
-    ports:
-      - "3007:3007"
-    depends_on:
-      - mysql
-      - redis
-      - rabbitmq
 
+  # order-service:
+  #   build: ./run-order-app
+  #   ports:
+  #     - "3007:3007"
+  #   depends_on:
+  #     - mysql
+  #     - redis
+  #     - rabbitmq
+  #   environment:
+  #     NODE_ENV: production
 
   auth-service:
     build: ./run-auth-app
@@ -49,15 +63,19 @@ services:
       - mysql
       - redis
       - rabbitmq
-  inventory-service:
-    build: ./run-inventory-app
-    ports:
-      - "3009:3009"
-    depends_on:
-      - mysql
-      - redis
-      - rabbitmq
-      
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+  # inventory-service:
+  #   build: ./run-inventory-app
+  #   ports:
+  #     - "3009:3009"
+  #   depends_on:
+  #     - mysql
+  #     - redis
+  #     - rabbitmq
+  #   environment:
+  #     NODE_ENV: production  
 
 volumes:
   mysql-data:

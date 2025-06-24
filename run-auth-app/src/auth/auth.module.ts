@@ -22,8 +22,18 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>{ 
           const secret = configService.get<string>('JWT_SECRET')
-        console.log(111,configService.get<string>('JWT_SECRET'),"configService.get<string>('JWT_SECRET')11111");
-        console.log(2222,configService.get<string>('JWT_EXPIRES_IN'),"configService.get<string>('JWT_SECRET')");
+          
+        console.log("('当前环境---》》》')",configService.get<string>('THIS_ENVIREMENT'))
+        console.log("('当前文件---》》》')",configService.get<string>('FILE'))
+       
+        console.log("('DB_HOST-xxx-->>>')",configService.get<string>('DB_HOST'))
+
+          console.log('NODE_ENV:', process.env.NODE_ENV); // 或通过 ConfigService 获取
+     console.log('ConfigService NODE_ENV:', configService.get('NODE_ENV')); // 可能返回 undefined
+        console.log("('REDIS_HOST---')",configService.get<string>('REDIS_HOST'))
+        console.log("('DB_USERNAME---')",configService.get<string>('DB_USERNAME'))
+        console.log("('DB_PASSWORD---')",configService.get<string>('DB_PASSWORD'))
+       
         if (!secret) {
           throw new Error('JWT secret is not configured');
         }
