@@ -1,0 +1,27 @@
+微服务servie1 run-auth-app :
+接口文档
+http://localhost:3001/auth/register
+post
+
+body
+{
+    "username": "444",
+    "password": "444",
+    "email": "user@44.com",
+    "name": "j@4444.com"
+
+  }
+登录 localhost:3001/auth/login
+body
+
+{ "email": "123", "password": "123" }
+
+res:
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1a3hlbkBleGFtcGxlLmNvbSIsInN1YiI6MSwiaWF0IjoxNzUwNzQyODg4LCJleHAiOjE3NTA4MjkyODh9.2cYEYqBw8mOMwnTi9-Q-xPKKYvSbME_W9jM7vnyQbfo"
+}
+微服务servie2 run-inventory-app 库存系统
+  同时间也是消费者 后面可以拆分多个微服务
+
+微服务3 run-order-app 库存系统 
+

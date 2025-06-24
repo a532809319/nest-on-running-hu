@@ -5,7 +5,15 @@ sh-3.2# npm show @nestjs/core version
 当前项目搭建基于
 
 本例子利用docker 部署 数据库 mq 
-1 请到各个子目录 运行 pnpm i (请注意本项目必这样，基于pnpm部署)
+1
+ 请到各个子目录 运行 pnpm i 
+或者 高级做法
+chmod +x install_deps.sh
+sudo su
+ ./install_deps.sh
+ (请注意本项目必这样，基于pnpm部署)
+安装完成 分别到各个目录npm run start
+
 2 sudo docker-compose up -d  # -d 表示后台运行 mac开启sudo
  端口情况
 ============================
@@ -17,30 +25,23 @@ docker 情况
   inventory-service:
       - "3009:3009"
       本地情况
- order-service:
-      - "3007:3007"
-    auth-service:
-      - "3008:3008"
-  inventory-service:
-      - "3009:3009"
+      auth-service:
+      - 3001
+      inventory-service:
+      - 3002
+      order-service:
+      - 3003
+
+    
+  
 
 =======================
-
-
-1  run-auth-app 
-    这是回答第二个问题用nest.js 写一个注册&登录接口(希望能够用mysql做数据库,redis做缓存)
-
-注意 1 2 项目毫无关系 
 
 2
 充分利用你对微服务，队列，缓存等知识点，设计一个支持高并发的nestjs订单后端demo（一个订单服务，一个库存服务）。在高并发的情况下，避免下单超库存售卖。
 使用jmeter验证。
 chmod +x runjm.sh
-run-inventory-app 库存系统
-端口为3001 同时间也是消费者 后面可以拆分多个微服务
 
-
-run-order-app 库存系统 端口为3002
 
 
 3 jmeter 使用jmeter验证。
