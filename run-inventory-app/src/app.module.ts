@@ -6,6 +6,7 @@ import { RedisModule } from './redis/redis.module';
 import { AppService } from './app.service';
 import { InventoryModule } from './inventory/inventory.module';
 import { StockConsumer } from './inventory/stock.consumer';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -31,6 +32,7 @@ import { StockConsumer } from './inventory/stock.consumer';
       inject: [ConfigService],
     }),
     RedisModule,
+    AuthModule,
     InventoryModule,
   ],
   controllers: [AppController],

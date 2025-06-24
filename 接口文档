@@ -20,6 +20,30 @@ res:
 {
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1a3hlbkBleGFtcGxlLmNvbSIsInN1YiI6MSwiaWF0IjoxNzUwNzQyODg4LCJleHAiOjE3NTA4MjkyODh9.2cYEYqBw8mOMwnTi9-Q-xPKKYvSbME_W9jM7vnyQbfo"
 }
+带token 访问:
+
+http://localhost:3001/auth/profile
+
+Authorization 
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1a3hlbkBleGFtcGxlLmNvbSIsInN1YiI6MSwiaWF0IjoxNzUwNzQzMzc3LCJleHAiOjE3NTA4Mjk3Nzd9.YAO3n-XiIqaV80KLXFfwjwx6jNzU2qy04Le-cHFcZ4I
+res:
+token ✅ 正确
+{
+    "payload": {
+        "username": "hukxen@example.com",
+        "sub": 1,
+        "iat": 1750743377,
+        "exp": 1750829777
+    }
+}
+token ❎ 错误
+
+{
+    "message": "Unauthorized",
+    "statusCode": 401
+}
+说明 该 服务是无状态 完全可以迁移代码证明
+
 微服务servie2 run-inventory-app 库存系统
   同时间也是消费者 后面可以拆分多个微服务
 
