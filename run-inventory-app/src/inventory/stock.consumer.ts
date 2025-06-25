@@ -7,24 +7,26 @@ import {
 } from '@nestjs/microservices';
 import { InventoryService } from './inventory.service';
 import { RedisService } from 'src/redis/redis.service';
+import { error } from 'console';
 @Controller('StockConsumer')
 export class StockConsumer {
   constructor(
     private readonly inventoryService: InventoryService,
     private readonly redisService: RedisService
   ) {
-  console.log(">>>>StockConsumer")
+  console.log(">>>>StockConsume")
   }
-  @MessagePattern('stock_deduction')
+  @MessagePattern('inventory_queue')
   handleMessage(data: any) {
     // 处理接收到的数据
-    console.log("stock_deduction",data)
+    console.log("inventory_queue",data)
     return { msg: '收到消息', data };
   }
-  @MessagePattern('stock_deduction')
+  @MessagePattern('inventory_queue')
   async handleStockDeduction(
     @Payload() data: any,
   ) {
+    console.log("xxxxxxx","消息来了")
      if (data.bad) {
       throw new Error('处理失败');
      }
