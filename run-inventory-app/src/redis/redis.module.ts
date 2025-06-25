@@ -1,24 +1,23 @@
+// src/redis/redis.module.ts
 import { Module, Global } from '@nestjs/common';
-import { createClient } from 'redis';
-import { RedisService } from './redis.service';
-      
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import Redis from 'ioredis';
 
-@Global()
+@Global() // Optional: Makes this module globally available once imported in root module
 @Module({
+  imports: [ConfigModule], // Need ConfigModule to get Redis host/port
   providers: [
     {
-      provide: 'REDIS_CLIENT',
-      useFactory: async () => {
-        const client = createClient({
-          url: process.env.NODE_ENV=='production'?'redis://:@redis:6379':'redis://:@localhost:6379',
+      provide: 'REDIS_INSTANCE', // Custom token for the ioredis client
+      useFactory: (configService: ConfigService) => {
+        return new Redis({
+          host: configService.get<string>('REDIS_HOST'),
+          port: configService.get<number>('REDIS_PORT'),
         });
-        await client.connect();
-        return client;
-      }
+      },
+      inject: [ConfigService],
     },
-    RedisService
   ],
-  exports: ['REDIS_CLIENT', RedisService]
+  exports: ['REDIS_INSTANCE'], // <-- Key step: Export the Redis provider
 })
-
 export class RedisModule {}

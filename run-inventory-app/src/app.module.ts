@@ -2,11 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RedisModule } from './redis/redis.module';
 import { AppService } from './app.service';
-import { InventoryModule } from './inventory/inventory.module';
-import { StockConsumer } from './inventory/stock.consumer';
+// import { StockConsumer } from './inventory_1/stock.consumer';
 import { AuthModule } from './auth/auth.module';
+import { InventoryModule } from './inventory/inventory.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -41,9 +40,9 @@ import { AuthModule } from './auth/auth.module';
       },
       inject: [ConfigService],
     }),
-    RedisModule,
     AuthModule,
-    InventoryModule,
+    InventoryModule
+    
   ],
   controllers: [AppController],
   providers: [AppService],

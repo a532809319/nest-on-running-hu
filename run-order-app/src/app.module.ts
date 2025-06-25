@@ -2,18 +2,52 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RedisModule } from './redis/redis.module';
 import { AppService } from './app.service';
-import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
-import { OrderModule } from './order/order.module';
+// import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
+import { OrdersModule } from './order/orders.module';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerBehindProxyGuard } from './throttler-behind-proxy.guard';
+import { BullModule } from '@nestjs/bull';
+import { HelloJobModule } from './jobs/hello.job.module';
+
 @Module({
   imports: [
+     BullModule.forRoot(
+      {
+      url:'redis://:@localhost:6379'
+   
+    }),
+
+  // ),
+
+
+
+      // BullModule.registerQueue({
+      //   name: 'audio',
+      //   connection: {
+      //     port: 6380,
+      //   },
+      // });
+
+     // 限流模块配置
+     ThrottlerModule.forRoot({
+      throttlers: [
+        {
+         ttl: parseInt(process.env.THROTTLE_TTL as any, 10) || 60, // 60秒
+        limit: parseInt(process.env.THROTTLE_LIMIT as any, 10) || 100, // 100个请求
+ 
+        },
+      ],
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: false,
       envFilePath: process.env.NODE_ENV == 'production' ? '.env.production' : '.env',
 
     }),
+     
+         
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
@@ -41,13 +75,23 @@ import { OrderModule } from './order/order.module';
       },
       inject: [ConfigService],
     }),
-    RedisModule,
-    RabbitMQModule,
-    OrderModule
+
+    HelloJobModule,
+    // RabbitMQModule,
+    OrdersModule
+    ,
+
+    
     //added to the imports array
   ],
   // controllers: [AppController],
+  // 全局应用限流守卫，支持代理后的真实IP
   providers: [AppService],
+  //    {
+  //     provide: APP_GUARD,
+  //     useClass: ThrottlerBehindProxyGuard,
+  //   },
+  // ],
   controllers: [AppController],
   exports: [],
 })

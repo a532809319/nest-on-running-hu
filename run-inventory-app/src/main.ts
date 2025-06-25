@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 
@@ -18,16 +19,21 @@ async function bootstrap() {
 // app.listen()
   // const app = await NestFactory.create(AppModule);
 // app.start
+
    // 1. 创建 HTTP 服务
+
   const app = await NestFactory.create(AppModule);
       
-
+  
   // 2. 连接 RabbitMQ 微服务
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
       urls: [process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672'],
-      queue: 'stock_deduction',
+      // queue: 'ORDER_SERVICE',
+      //  queue: 'inventory_queue',
+       queue: 'ORDER_SERVICE',
+
       queueOptions: { durable: true },
     },
   });

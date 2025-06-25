@@ -1,40 +1,34 @@
-import { 
-  Entity, 
-  PrimaryGeneratedColumn, 
-  Column, 
-  CreateDateColumn 
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+export enum OrderStatus {
+  PENDING = 'PENDING',        // 待支付
+  PAID = 'PAID',              // 已支付
+  CANCELLED = 'CANCELLED',    // 已取消
+  EXPIRED = 'EXPIRED',        // 已过期 (例如超时未支付)
+}
 
-@Entity()
+@Entity('orders')
 export class Order {
   @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ unique: true })
-  orderId: string;
+  id: number; // 订单ID
 
   @Column()
-  productId: string;
+  productId: number; // 商品ID
 
   @Column()
-  productName: string;
+  quantity: number; // 购买数量
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  totalPrice: number; // 订单总价
 
   @Column()
-  quantity: number;
+  userId: number; // 用户ID
 
-  @Column()
-  userId: string;
-
-  @Column({
-    type: 'enum',
-    enum: ['pending', 'confirmed', 'failed'],
-    default: 'pending'
-  })
-  status: string;
-
-  @Column({ default: null, nullable: true })
-  transactionId: string;
+  @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.PENDING })
+  status: OrderStatus; // 订单状态
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date; // 创建时间
+
+  @UpdateDateColumn()
+  updatedAt: Date; // 更新时间
 }
