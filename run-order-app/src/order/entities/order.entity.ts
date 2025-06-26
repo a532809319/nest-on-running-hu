@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+
 export enum OrderStatus {
   PENDING = 'PENDING',        // 待支付
   PAID = 'PAID',              // 已支付
@@ -9,26 +10,26 @@ export enum OrderStatus {
 @Entity('orders')
 export class Order {
   @PrimaryGeneratedColumn()
-  id: number; // 订单ID
+  id: number;
 
   @Column()
-  productId: number; // 商品ID
+  productId: number;
 
   @Column()
-  quantity: number; // 购买数量
+  quantity: number;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  totalPrice: number; // 订单总价
+  totalPrice: number;
 
   @Column()
-  userId: number; // 用户ID
+  userId: number;
 
   @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.PENDING })
-  status: OrderStatus; // 订单状态
+  status: OrderStatus;
 
   @CreateDateColumn()
-  createdAt: Date; // 创建时间
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date; // 更新时间
+  updatedAt: Date;
 }

@@ -1,11 +1,11 @@
 import { Controller, Post, Body, Get, Param, ParseIntPipe, UseGuards, Logger } from '@nestjs/common';
-import { OrdersService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './entities/order.entity';
-// import { ThrottlerGuard } from '@nestjs/throttler';
-import { MessagePattern, Payload } from '@nestjs/microservices'; // 导入 MessagePattern
+import { ThrottlerGuard } from '@nestjs/throttler';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { OrdersService } from './order.service';
 
-// @UseGuards(ThrottlerGuard) // 对所有路由应用限流 后面打开 压测过后
+// @UseGuards(ThrottlerGuard) // 对所有 HTTP 路由应用限流
 @Controller('orders')
 export class OrdersController {
   private readonly logger = new Logger(OrdersController.name);
@@ -28,12 +28,7 @@ export class OrdersController {
     return this.ordersService.findOrderById(id);
   }
 
-  /**
-   * 监听 RabbitMQ 消息，处理订单超时任务
-   * 这里的 @MessagePattern("check_order_timeout") 告诉 NestJS 这是一个微服务事件处理器，
-   * 当 RabbitMQ 队列 'order_timeout' 收到消息时，会触发此方法。
-   * 注意：这个方法需要在 order-service 的 main.ts 中通过 app.connectMicroservice 注册 RMQ 传输器才能生效。
-   */
+  // 监听 RabbitMQ 消息，处理订单超时任务
   @MessagePattern('check_order_timeout')
   async handleOrderTimeoutEvent(@Payload() data: { orderId: number }) {
     await this.ordersService.handleOrderTimeout(data);

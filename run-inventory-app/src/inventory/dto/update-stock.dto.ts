@@ -4,13 +4,14 @@ export class UpdateStockDto {
   @IsInt()
   @Min(1)
   @IsNotEmpty()
-  productId: number; // 商品ID
+  productId: number;
 
   @IsInt()
+  @Min(1) // 扣减数量必须大于0
   @IsNotEmpty()
-  quantity: number; // 数量（正数表示增加，负数表示减少）
+  quantity: number;
 
-  // 可选：用于乐观锁的版本号
+  // 乐观锁需要原始版本号
   @IsInt()
   @Min(1)
   version?: number;

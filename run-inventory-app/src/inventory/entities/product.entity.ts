@@ -1,18 +1,19 @@
 import { Entity, PrimaryGeneratedColumn, Column, VersionColumn } from 'typeorm';
-@Entity('products') // 对应数据库中的 products 表
+
+@Entity('products')
 export class Product {
   @PrimaryGeneratedColumn()
-  id: number; // 商品ID
+  id: number;
 
   @Column({ length: 255 })
-  name: string; // 商品名称
+  name: string;
 
   @Column()
-  stock: number; // 库存数量
+  stock: number;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  price: number; // 商品价格
+  price: number;
 
-  @VersionColumn()
-  version: number; // 乐观锁版本号
+  @VersionColumn() // **乐观锁的关键：TypeORM 会自动管理这个版本号**
+  version: number;
 }

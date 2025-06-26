@@ -47,7 +47,7 @@ services:
   order-service:
     build: ./run-order-app
     ports:
-      - "3003:3010"
+      - "3010:3003"
     depends_on:
       - mysql
       - redis
@@ -60,6 +60,7 @@ services:
     build: ./run-auth-app
     ports:
       - "3008:3001"
+
     depends_on:
       - mysql
       - redis
@@ -72,7 +73,7 @@ services:
   inventory-service:
     build: ./run-inventory-app
     ports:
-      - "3002:3009"
+      - "3009:3002"
     depends_on:
       - mysql
       - redis
