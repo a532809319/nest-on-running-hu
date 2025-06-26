@@ -1,45 +1,32 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
+  const app = await NestFactory.create(AppModule); // HTTP server for staff interface
+  const configService = app.get(ConfigService);
 
-// const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-//   AppModule,
-//   {
-//     transport: Transport.RMQ,
-//     options: {
-//       urls: ['amqp://localhost:5672'],
-//       queue: 'stock_deduction',
-//       wildcards: true,
-//     },
-//   },
-// );
-// app.listen()
-  // const app = await NestFactory.create(AppModule);
-// app.start
-   // 1. 创建 HTTP 服务
-  const app = await NestFactory.create(AppModule);
-      
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // 2. 连接 RabbitMQ 微服务
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.RMQ,
-    options: {
-      urls: [process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672'],
-      queue: 'stock_deduction',
-      queueOptions: { durable: true },
+  // Microservice listener for RabbitMQ messages
+  app.connectMicroservice<MicroserviceOptions>(
+    {
+      transport: Transport.RMQ,
+      options: {
+         urls: [process.env.RABBITMQ_URL || 'amqp://localhost:5672'],
+
+        queue: 'inventory_queue', // Inventory service listens on this queue
+        queueOptions: {
+          durable: false,
+        },
+      },
     },
-  });
+  );
 
-  // // 3. 启动微服务
-  await app.startAllMicroservices();
-
-  // // 4. 启动 HTTP 服务
-const port=3002
-  await app.listen(port,"0.0.0.0");
-  console.log("Auth-inventory 0.0.0.0running on port ",port)
-  console.log("Auth-inventory 0.0.0.0running on port ",port)
-  console.log('HTTP 服务已启``端口 ；RabbitMQ 微服务已连接。');
+  await app.startAllMicroservices(); // Start listening for microservice messages
+  await app.listen(3002); // Start HTTP server on port 3002
+  console.log('Inventory Service is running on http://localhost:3002 and listening for RabbitMQ messages...');
 }
 bootstrap();

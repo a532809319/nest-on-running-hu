@@ -1,40 +1,35 @@
-import { 
-  Entity, 
-  PrimaryGeneratedColumn, 
-  Column, 
-  CreateDateColumn 
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+export enum OrderStatus {
+  PENDING = 'PENDING',        // 待支付
+  PAID = 'PAID',              // 已支付
+  CANCELLED = 'CANCELLED',    // 已取消
+  EXPIRED = 'EXPIRED',        // 已过期 (例如超时未支付)
+}
+
+@Entity('orders')
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  orderId: string;
-
   @Column()
-  productId: string;
-
-  @Column()
-  productName: string;
+  productId: number;
 
   @Column()
   quantity: number;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  totalPrice: number;
+
   @Column()
-  userId: string;
+  userId: number;
 
-  @Column({
-    type: 'enum',
-    enum: ['pending', 'confirmed', 'failed'],
-    default: 'pending'
-  })
-  status: string;
-
-  @Column({ default: null, nullable: true })
-  transactionId: string;
+  @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.PENDING })
+  status: OrderStatus;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
