@@ -1,12 +1,14 @@
 import { Injectable, Inject } from '@nestjs/common';
 import Redis, { Cluster } from 'ioredis'; // 导入 ioredis 类型
-import { REDIS_CLUSTER_CLIENT } from './redis/redis.module'; // 导入我们定义的 Injection Token
+// import { REDIS_CLUSTER_CLIENT } from './redis/redis.module'; // 导入我们定义的 Injection Token
 
 @Injectable()
 export class AppService {
   constructor(
+        @Inject('REDIS_CLUSTER') private readonly redisClusterClient: Cluster,
+
     // 使用 @Inject() 装饰器和 REDIS_CLUSTER_CLIENT token 来注入 Redis Cluster 客户端实例
-    @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClusterClient: Cluster,
+    // @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClusterClient: Cluster,
   ) {}
 
   /**

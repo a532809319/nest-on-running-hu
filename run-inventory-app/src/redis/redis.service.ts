@@ -1,12 +1,13 @@
 import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
 import Redis, { Cluster } from 'ioredis'; // 导入 ioredis 类型
-import { REDIS_CLUSTER_CLIENT } from './redis.module'; // 导入 Redis 客户端的注入 token
 
 @Injectable()
 export class RedisService implements OnModuleDestroy {
   constructor(
     // 注入 Redis 集群客户端实例
-    @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClient: Cluster,
+        @Inject('REDIS_CLUSTER') private readonly redisClient: Cluster,
+
+    // @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClient: Cluster,
   ) {}
 
   /**

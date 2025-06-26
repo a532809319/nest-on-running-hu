@@ -9,7 +9,6 @@ import { ClientProxy } from '@nestjs/microservices';
 import { Redis, Cluster } from 'ioredis'; // Import Redis (class) and Cluster (class) explicitly
 import * as path from 'path';
 import * as fs from 'fs';
-import { REDIS_CLUSTER_CLIENT } from 'src/redis/redis.module';
 
 @Injectable()
 export class InventoryService {
@@ -23,9 +22,10 @@ export class InventoryService {
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
     private dataSource: DataSource,
-    @Inject('ORDER_SERVICE') private readonly orderServiceClient: ClientProxy,
     // ===> CHANGE THIS LINE <===
-        @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClient: Cluster,
+        @Inject('REDIS_CLUSTER') private readonly redisClient: Cluster,
+
+        // @Inject(REDIS_CLUSTER_CLIENT) private readonly redisClient: Cluster,
 
   ) {
     // this.loadLuaScript();
