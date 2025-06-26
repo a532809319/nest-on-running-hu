@@ -26,7 +26,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 # 关键改进：显式复制 .env.production 到镜像
 # 关键：在这里设置 NODE_ENV
 ENV NODE_ENV=production
-COPY .env ./
+# COPY .env ./
 COPY .env.development ./
 COPY .env.production ./
 COPY package.json ./
