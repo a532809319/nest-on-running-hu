@@ -1,0 +1,73 @@
+
+services:
+  # 定义六个 Redis 节点服务
+  redis-node-1: &redis-base # 定义一个锚点，用于后续复用配置
+    image: redis:7.2.4-alpine
+    container_name: redis-node-1
+    command: redis-server /etc/redis/redis.conf
+    ports:
+      - "6001:6379" # 宿主机端口:容器端口
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf # 挂载配置文件
+      - redis-data-1:/data # 数据持久化卷
+    networks:
+      - redis-cluster-net # 连接到自定义网络
+
+  redis-node-2:
+    <<: *redis-base # 复用 redis-base 的配置
+    container_name: redis-node-2
+    ports:
+      - "6002:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - redis-data-2:/data
+
+  redis-node-3:
+    <<: *redis-base
+    container_name: redis-node-3
+    ports:
+      - "6003:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - redis-data-3:/data
+
+  redis-node-4:
+    <<: *redis-base
+    container_name: redis-node-4
+    ports:
+      - "6004:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - redis-data-4:/data
+
+  redis-node-5:
+    <<: *redis-base
+    container_name: redis-node-5
+    ports:
+      - "6005:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - redis-data-5:/data
+
+  redis-node-6:
+    <<: *redis-base
+    container_name: redis-node-6
+    ports:
+      - "6006:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - redis-data-6:/data
+
+# 定义自定义网络，让所有 Redis 容器都在一个网络里互相通信
+networks:
+  redis-cluster-net:
+    driver: bridge
+
+# 定义持久化数据卷，防止容器删除后数据丢失
+volumes:
+  redis-data-1:
+  redis-data-2:
+  redis-data-3:
+  redis-data-4:
+  redis-data-5:
+  redis-data-6:

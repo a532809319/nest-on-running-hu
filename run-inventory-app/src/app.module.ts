@@ -4,9 +4,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import appConfig from './config/app.config';
 import { InventoryModule } from './inventory/inventory.module';
 import { Product } from './inventory/entities/product.entity';
+import { RedisModule } from '@nestjs-modules/ioredis';
 
 @Module({
   imports: [
+    RedisModule,
     ConfigModule.forRoot({
       isGlobal: true,
        envFilePath: process.env.NODE_ENV=='production'?'.env.production':'.env',
@@ -16,7 +18,9 @@ import { Product } from './inventory/entities/product.entity';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => {
+        console.log("DB_HOST>>>>>",configService.get<string>('DB_HOST'))
+        return {
           type: 'mysql',
             host: configService.get<string>('DB_HOST'),
           port: configService.get<number>('DB_PORT'),
@@ -26,7 +30,8 @@ import { Product } from './inventory/entities/product.entity';
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
           synchronize: configService.get<string>('DB_SYNCHRONIZE') === 'true',
         autoLoadEntities: true,
-      }),
+      }
+      },
     }),
     InventoryModule,
   ],

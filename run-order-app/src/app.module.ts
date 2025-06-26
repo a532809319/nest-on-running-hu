@@ -16,6 +16,8 @@ import { OrdersModule } from './order/orders.module';
 
       load: [appConfig],
     }),
+      // **核心修改点：BullModule 连接 Redis Cluster**
+ 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

@@ -51,3 +51,4 @@ token ❎ 错误
 
 
 
+docker-compose down -v --rmi all

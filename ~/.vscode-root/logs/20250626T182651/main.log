@@ -1,0 +1,8 @@
+2025-06-26 18:26:51.469 [info] update#setState idle
+2025-06-26 18:27:15.484 [info] Extension host with pid 38830 exited with code: 0, signal: unknown.
+2025-06-26 18:27:21.472 [info] update#setState checking for updates
+2025-06-26 18:27:22.732 [info] update#setState downloading
+2025-06-26 18:28:21.519 [info] update#setState downloaded
+2025-06-26 18:28:21.522 [info] update#setState ready
+2025-06-26 20:20:03.302 [warning] No ptyHost heartbeat after 6 seconds
+2025-06-26 21:07:36.779 [warning] No ptyHost heartbeat after 6 seconds

@@ -1,0 +1,89 @@
+2025-06-26 18:26:52.529 [info] Extension host with pid 38830 started
+2025-06-26 18:26:52.588 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2025-06-26 18:26:52.620 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-06-26 18:26:52.622 [info] ExtensionService#_doActivateExtension firsttris.vscode-jest-runner, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.678 [info] ExtensionService#_doActivateExtension huizhou.githd, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.738 [info] ExtensionService#_doActivateExtension iepstein.run-code, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.739 [info] ExtensionService#_doActivateExtension mcright.auto-save, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.740 [info] ExtensionService#_doActivateExtension michaelisom.angularjs-template-autocomplete, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.825 [info] ExtensionService#_doActivateExtension qinjia.vscode-wechat, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.871 [error] Activating extension qinjia.vscode-wechat failed due to an error:
+2025-06-26 18:26:52.872 [error] TypeError: The "path" argument must be of type string. Received undefined
+	at Object.join (node:path:1263:7)
+	at Object.<anonymous> (/Users/hukai/.vscode/extensions/qinjia.vscode-wechat-0.0.6/out/src/typeDefinition.js:7:29)
+	at Module._compile (node:internal/modules/cjs/loader:1544:14)
+	at Module._extensions..js (node:internal/modules/cjs/loader:1629:10)
+	at Module.load (node:internal/modules/cjs/loader:1282:32)
+	at Module._load (node:internal/modules/cjs/loader:1103:12)
+	at c._load (node:electron/js2c/node_init:2:16955)
+	at e._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:225:1509)
+	at t._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:180:22628)
+	at r._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:172:22062)
+	at Module.require (node:internal/modules/cjs/loader:1305:19)
+	at require (node:internal/modules/helpers:182:18)
+	at Object.<anonymous> (/Users/hukai/.vscode/extensions/qinjia.vscode-wechat-0.0.6/out/src/extension.js:6:26)
+	at Module._compile (node:internal/modules/cjs/loader:1544:14)
+	at Module._extensions..js (node:internal/modules/cjs/loader:1629:10)
+	at Module.load (node:internal/modules/cjs/loader:1282:32)
+	at Module._load (node:internal/modules/cjs/loader:1103:12)
+	at c._load (node:electron/js2c/node_init:2:16955)
+	at e._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:225:1509)
+	at t._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:180:22628)
+	at r._load (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:172:22062)
+	at Module.require (node:internal/modules/cjs/loader:1305:19)
+	at require (node:internal/modules/helpers:182:18)
+	at PJ.Cb (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:211:1253)
+2025-06-26 18:26:52.879 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.901 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-06-26 18:26:52.970 [info] Eager extensions activated
+2025-06-26 18:26:52.975 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:52.976 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:52.986 [info] ExtensionService#_doActivateExtension codista.vscode-autosave, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.007 [info] ExtensionService#_doActivateExtension cweijan.vscode-mysql-client2, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.214 [info] ExtensionService#_doActivateExtension cyrilletuzi.angular-schematics, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.427 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.449 [info] ExtensionService#_doActivateExtension EditorConfig.EditorConfig, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.466 [info] ExtensionService#_doActivateExtension edwardhjp.vscode-author-generator, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.471 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.508 [info] ExtensionService#_doActivateExtension formulahendry.code-runner, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.521 [info] ExtensionService#_doActivateExtension ghaschel.vscode-angular-html, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.526 [info] ExtensionService#_doActivateExtension nrwl.angular-console, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.826 [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.829 [info] ExtensionService#_doActivateExtension Shopify.ruby-extensions-pack, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.830 [info] ExtensionService#_doActivateExtension stylelint.vscode-stylelint, startup: false, activationEvent: 'onStartupFinished'
+2025-06-26 18:26:53.954 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'api', root cause: nrwl.angular-console
+2025-06-26 18:26:53.978 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-06-26 18:26:53.982 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-06-26 18:26:54.009 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-06-26 18:27:13.453 [info] Extension host terminating: renderer closed the MessagePort
+2025-06-26 18:27:13.472 [error] An error occurred when deactivating the extension 'ghaschel.vscode-angular-html':
+2025-06-26 18:27:13.473 [error] TypeError: Cannot read properties of undefined (reading 'dispose')
+	at e.deactivate (/Users/hukai/.vscode/extensions/ghaschel.vscode-angular-html-2.13.0/out/ts/extension.js:1:126797)
+	at PJ.eb (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:123:11724)
+	at file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:123:9874
+	at Array.map (<anonymous>)
+	at PJ.$ (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:123:9862)
+	at PJ.terminate (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:123:10105)
+	at v2.terminate (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:1434)
+	at us (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:225:5702)
+	at MessagePortMain.<anonymous> (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:225:2249)
+	at MessagePortMain.emit (node:events:524:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2025-06-26 18:27:13.553 [error] Error: Channel has been closed
+	at s (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2431)
+	at Object.appendLine (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2570)
+	at R.logOutputMessage (/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json-language-features/client/dist/node/jsonClientMain.js:2:290791)
+	at R.info (/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json-language-features/client/dist/node/jsonClientMain.js:2:290524)
+	at ChildProcess.<anonymous> (/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json-language-features/client/dist/node/jsonClientMain.js:2:514797)
+	at ChildProcess.emit (node:events:524:28)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+2025-06-26 18:27:15.480 [error] Error: kill ESRCH
+	at process.kill (node:internal/process/per_thread:225:13)
+	at IXe (/Users/hukai/.vscode/extensions/nrwl.angular-console-18.54.2/main.js:1765:21526)
+	at Object.hZn (/Users/hukai/.vscode/extensions/nrwl.angular-console-18.54.2/main.js:2837:2444)
+	at runNextTicks (node:internal/process/task_queues:60:5)
+	at listOnTimeout (node:internal/timers:545:9)
+	at process.processTimers (node:internal/timers:519:7)
+	at async Promise.all (index 24)
+	at async PJ.$ (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/workbench/api/node/extensionHostProcess.js:123:9888)
+2025-06-26 18:27:15.482 [info] Extension host with pid 38830 exiting with code 0

@@ -2,12 +2,11 @@
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-
+COPY decrease_stock.lua ./
 COPY pnpm-lock.yaml ./
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json ./
-COPY src/lua  ./
 
 RUN pnpm install
 
@@ -22,6 +21,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY pnpm-lock.yaml ./
+COPY decrease_stock.lua ./
+
 RUN corepack enable && corepack prepare pnpm@latest --activate
 # 关键改进：显式复制 .env.production 到镜像
 # 关键：在这里设置 NODE_ENV
@@ -30,6 +31,8 @@ COPY .env ./
 COPY .env.development ./
 COPY .env.production ./
 COPY package.json ./
+COPY decrease_stock.lua ./
+
 RUN pnpm install --prod
 
 COPY --from=builder /app/dist ./dist
