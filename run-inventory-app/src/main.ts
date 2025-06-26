@@ -24,9 +24,10 @@ async function bootstrap() {
       },
     },
   );
+          console.log("process.env.RABBITMQ_URL.",process.env.RABBITMQ_URL)
 
   await app.startAllMicroservices(); // Start listening for microservice messages
-  await app.listen(3002); // Start HTTP server on port 3002
+  await app.listen(3002,'0.0.0.0'); // Start HTTP server on port 3002
   console.log('Inventory Service is running on http://localhost:3002 and listening for RabbitMQ messages...');
 }
 bootstrap();

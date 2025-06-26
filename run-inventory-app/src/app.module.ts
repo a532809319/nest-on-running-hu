@@ -9,6 +9,8 @@ import { Product } from './inventory/entities/product.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+       envFilePath: process.env.NODE_ENV=='production'?'.env.production':'.env',
+
       load: [appConfig],
     }),
     TypeOrmModule.forRootAsync({

@@ -7,6 +7,8 @@ COPY pnpm-lock.yaml ./
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json ./
+COPY src/lua  ./
+
 RUN pnpm install
 
 # 复制 .env.development（构建阶段可能需要，但生产环境不会用它）

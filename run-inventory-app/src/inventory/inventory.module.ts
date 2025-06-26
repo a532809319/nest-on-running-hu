@@ -18,7 +18,9 @@ import Redis from 'ioredis';
         useFactory: (configService: ConfigService) => ({
           transport: Transport.RMQ,
           options: {
-         urls: [process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672'],
+         urls: [process.env.RABBITMQ_URL || 'amqp://localhost:5672'],
+
+        //  urls: [process.env.NODE_ENV=='production'?'amqp://rabbitmq:5672':'amqp://localhost:5672'],
             queue: 'order_queue', // 订单服务的队列名称
             queueOptions: {
               durable: false,
