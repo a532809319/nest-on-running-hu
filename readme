@@ -20,6 +20,16 @@ redis-cli --cluster create \
   redis-node-4:10004 redis-node-5:10005 redis-node-6:10006 \
   --cluster-replicas 1
 
+  redis-cli --cluster create \
+        172.20.0.11:6379 \
+        172.20.0.12:6379 \
+        172.20.0.13:6379 \
+        172.20.0.14:6379 \
+        172.20.0.15:6379 \
+        172.20.0.16:6379 \
+        --cluster-replicas 1 \
+        --cluster-yes
+
 4
 redis-cli -c -p 10001 cluster info
 redis-cli -c -p 10001 cluster nodes
@@ -54,46 +64,19 @@ sudo su
 docker-compose down -v  # 清理旧容器和卷
 docker-compose up --build  # 重新构建镜像
 2 sudo docker-compose up -d  # -d 表示后台运行 mac开启sudo
- 端口情况
-============================
-docker 情况
-    order-service:
-      - "3007:3007"
-    auth-service:
-      - "3008:3008"
-  inventory-service:
-      - "3009:3009"
-      本地情况
-      auth-service:
-      - 3001
-      inventory-service:
-      - 3002
-      order-service:
-      - 3003
 
-    
-  
+docker-compose-redis.yml ---->>>docker-compose.yml
 
-=======================
-注意 auth 服务是能嵌入任何 服务来完成 auth 认证 其余服务只要配置一样的秘钥实现
-无状态登录的
+2
+docker-compose up -d
+
+3
+docker-compose exec redis-node-1 redis-cli -c cluster nodes
 
 
 
 
-
-使用jmeter验证。
-chmod +x runjm.sh
-
-
-
-3 jmeter 使用jmeter验证。
-cd testJemReport 
-安装jemer 或者可以yong dokck
-jmeter -n -t ./test1.jmx -l ./test_results.jtl -e -o ./report
-file:///Users/hukai/Desktop/demo-hu/jmeter/report/index.html
-本机电脑测试 哪怕是直接return 也是百分之八十的结果。 所以本机测试可能数据不准
-
+docker compose down --volumes --remove-orphans # 停止并移除服务，包括网络和匿名卷
 
 
 
